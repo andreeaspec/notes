@@ -13,7 +13,11 @@ git remote add <my-remote-name> git@github.com:andreeaspec/kafka.git
 #List all commits -sudo apt install tig (nu e instalat by default)
 tig
 git log -1
+
+# Pull all remote changes
+git pull <origin> <local>
 git pull private trunk
+
 git checkout -b feature/JIRA-1234
 
 # Squash la ultimele 3 comituri intr-unul singur
@@ -25,3 +29,10 @@ git commit --amend
 # Copy commit from other branch to current branch
 git cherry-pick <sha1-commit-id>
 
+#To view all the branches- both local and remote
+git branch -a
+
+git fetch origin master
+git merge
+git log origin/master
+git push <origin> <master> 
