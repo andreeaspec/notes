@@ -4,11 +4,11 @@ git config --global user.name "Andreea Gheo"
 git config --global user.email "andreeaspec@gmail.com"
 git add note.txt
 git commit -m "Mesajul meu"
-git push origin main
+git push <remote-name> <branch-name>
 
 # List remote repositories
 git remote -v 
-git remote add private git@github.com:andreeaspec/kafka.git
+git remote add <my-remote-name> git@github.com:andreeaspec/kafka.git
 
 #List all commits -sudo apt install tig (nu e instalat by default)
 tig
@@ -21,4 +21,7 @@ git rebase -i HEAD~3
 
 # Modific comitul anterior
 git commit --amend  
+
+# Copy commit from other branch to current branch
+git cherry-pick <sha1-commit-id>
 
