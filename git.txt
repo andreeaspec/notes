@@ -1,1 +1,13 @@
 ssh-keygen -t rsa
+
+git congig --global user.name "Andreea Gheo"
+git config --global user.email "andreeaspec@gmail.com"
+git add note.txt
+git commit -m "Mesajul meu"
+git push origin main
+git remote -v 
+git remote add private git@github.com:andreeaspec/kafka.git
+tig
+git log -1
+git pull private trunk
+git checkout -b feature/JIRA-1234
