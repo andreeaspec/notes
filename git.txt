@@ -1,13 +1,24 @@
 ssh-keygen -t rsa
 
-git congig --global user.name "Andreea Gheo"
+git config --global user.name "Andreea Gheo"
 git config --global user.email "andreeaspec@gmail.com"
 git add note.txt
 git commit -m "Mesajul meu"
 git push origin main
+
+# List remote repositories
 git remote -v 
 git remote add private git@github.com:andreeaspec/kafka.git
+
+#List all commits -sudo apt install tig (nu e instalat by default)
 tig
 git log -1
 git pull private trunk
 git checkout -b feature/JIRA-1234
+
+# Squash la ultimele 3 comituri intr-unul singur
+git rebase -i HEAD~3
+
+# Modific comitul anterior
+git commit --amend  
+
