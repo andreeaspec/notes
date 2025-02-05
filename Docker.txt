@@ -1,19 +1,29 @@
 #run a container from an image
 docker run <nginx>
-#list all containers
+# -it ->automatically logged in when it runs
+docker run -it centos bash 
+#run in detach (in background)
+docker run -d <container_name>
+
+docker attach a043d 
+
+#stop docker container
+docker stop <container_name/container_id>
+
+#list all running containers only
 docker ps
 #list all containers running or not
 docker ps -a
 #remove a stopped container
-docker rm <container_name>
+docker rm <container_name/container_id>>
+
 #list docker images
 docker images
+
 #remove docker image
 docker rmi <image_name>
 docker pull <image_name>
 docker run ubuntu sleep 5
 #see a file inside a container
 docker exec <container_name> cat /etc/hosts
-#run in detach (in background)
-docker run -d <image_name>
-docker attach a043d 
+
