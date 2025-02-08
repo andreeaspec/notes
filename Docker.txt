@@ -30,3 +30,6 @@ docker run ubuntu sleep 5
 #see a file inside a container
 docker exec <container_name> cat /etc/hosts
 
+#list info aboute images-size etc
+docker history <image_name> 
+
