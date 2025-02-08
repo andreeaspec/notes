@@ -3,6 +3,8 @@
 kubectl get pods
 kubectl get pods -o wide
 
+# create new pod using apply - cand use apply or create 
+kubectl apply -f pod.yaml
 # create pod with nginx name
 kubectl run nginx --image=nginx
 
