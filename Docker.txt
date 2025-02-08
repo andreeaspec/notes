@@ -69,4 +69,8 @@ sudo docker run -p 8080:8080 -p 50000:50000 -v /home/andreea/my-jenkins-data:/va
 # run a mysql container named mysql-db using the mysql image with database password set to db_pass123
 docker run -d --name mysql-db -e MYSQL_ROOT_PASSWORD=db_pass123 mysql
 
+# run a mysql container named mysql-db using the mysql image with database password set to db_pass123
+# and data stored by the container at /opt/data on the host
+docker  run -d --name mysql-db -e MYSQL_ROOT_PASSWORD=db_pass123 -v /opt/data:/var/lib/mysql mysql
+
 
