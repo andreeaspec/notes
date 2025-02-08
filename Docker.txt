@@ -1,26 +1,39 @@
 #run a container from an image
 docker run <nginx>
+
 # -it ->automatically logged in when it runs
 docker run -it centos bash 
+
 #run in detach (in background)
 docker run -d <container_name>
+
 # map port 8080 on the container to 38282 on the host
 docker run -p 38282:8080 -d kodekloud/simple-webapp:blue
+
 # run with a tag
 docker run ubuntu:4.0
+
+#open the container created using attach 
 docker attach a043d 
+
 # -H option - run on a host
 docker -H=10.123.2.1:2375 run nginx
-#--cpu option to limit the memory usage
+
+#--cpu option to limit the cpu usage (no more than 5% in this example)
 docker run --cpus=.5 ubuntu
+
+#--memory option to limit the memory usage
+docker run --memory=100m ubuntu
 
 #stop docker container
 docker stop <container_name/container_id>
 
 #list all running containers only
 docker ps
+
 #list all containers running or not
 docker ps -a
+
 #remove a stopped container
 docker rm <container_name/container_id>>
 
@@ -29,8 +42,10 @@ docker images
 
 #remove docker image
 docker rmi <image_name>
+
 docker pull <image_name>
 docker run ubuntu sleep 5
+
 #see a file inside a container
 docker exec <container_name> cat /etc/hosts
 
