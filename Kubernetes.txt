@@ -26,3 +26,8 @@ kubectl get replicaset
 kubectl get pods
 # vezi toate cele 3 de sus 
 kubectl get all
+
+#Create a new pod with the name redis and the image redis123 using a pod-definition YAML file
+kubectl run redis --image=redis123 --dry-run=client -o yaml > redis-definition.yaml
+kubectl create -f redis-definition.yaml
+
