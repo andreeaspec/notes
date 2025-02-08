@@ -52,6 +52,17 @@ docker exec <container_name> cat /etc/hosts
 #list info aboute images-size etc
 docker history <image_name> 
 
+# to save data create data_volume under /var/lib/docker/volumes 
+docker volume create data_volume
+
+# mount the volume to the server-> volume mounting 
+docker run -v sata_volume:/var/lib/mysql mysql 
+
+# mount an already existing folder /data/mysql -> bind mounting 
+docker run -v /data/mysql:/var/lib/mysql mysql
+# echivalent cu ce e mai jo (se poate face si cu optiunea --mount)
+docker run --mount type=bind,source=/data/mysql,target=/var/lib/mysql mysql
+
 # run jenkins server on docker with data stored in /home/andreea/my-jenkins-data 
 sudo docker run -p 8080:8080 -p 50000:50000 -v /home/andreea/my-jenkins-data:/var/jenkins_home -u root jenkins/jenkins:lts-jdk11
 
