@@ -9,6 +9,10 @@ docker run -p 38282:8080 -d kodekloud/simple-webapp:blue
 # run with a tag
 docker run ubuntu:4.0
 docker attach a043d 
+# -H option - run on a host
+docker -H=10.123.2.1:2375 run nginx
+#--cpu option to limit the memory usage
+docker run --cpus=.5 ubuntu
 
 #stop docker container
 docker stop <container_name/container_id>
