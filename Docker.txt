@@ -33,3 +33,7 @@ docker exec <container_name> cat /etc/hosts
 #list info aboute images-size etc
 docker history <image_name> 
 
+# run jenkins server on docker with data stored in /home/andreea/my-jenkins-data 
+sudo docker run -p 8080:8080 -p 50000:50000 -v /home/andreea/my-jenkins-data:/var/jenkins_home -u root jenkins/jenkins:lts-jdk11
+
+
