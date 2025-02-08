@@ -66,4 +66,7 @@ docker run --mount type=bind,source=/data/mysql,target=/var/lib/mysql mysql
 # run jenkins server on docker with data stored in /home/andreea/my-jenkins-data 
 sudo docker run -p 8080:8080 -p 50000:50000 -v /home/andreea/my-jenkins-data:/var/jenkins_home -u root jenkins/jenkins:lts-jdk11
 
+# run a mysql container named mysql-db using the mysql image with database password set to db_pass123
+docker run -d --name mysql-db -e MYSQL_ROOT_PASSWORD=db_pass123 mysql
+
 
