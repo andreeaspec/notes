@@ -4,7 +4,10 @@ docker run <nginx>
 docker run -it centos bash 
 #run in detach (in background)
 docker run -d <container_name>
-
+# map port 8080 on the container to 38282 on the host
+docker run -p 38282:8080 -d kodekloud/simple-webapp:blue
+# run with a tag
+docker run ubuntu:4.0
 docker attach a043d 
 
 #stop docker container
