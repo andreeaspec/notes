@@ -1,0 +1,26 @@
+#4 level top properties in pod definition.yaml - apiVersion, kind, metadata and spec
+# get pods
+kubectl get pods
+kubectl get pods -o wide
+
+# create pod with nginx name
+kubectl run nginx --image=nginx
+
+kubectl describe pod <pod_name>
+kubectl delete pods <pod_name> 
+kubectl run redis --image=redis123
+ 
+kubectl delete pods redis 
+
+kubectl get replicaset
+kubectl edit replicaset new-replica-set
+pentru scale se poate si asa si cu comanda scale
+kubectl scale replicaset new-replica-set --replicas=5
+kubectl delete rs replicaset-1
+kubectl describe rs
+kubectl create -f deployment
+kubectl get deployments
+kubectl get replicaset
+kubectl get pods
+# vezi toate cele 3 de sus 
+kubectl get all
