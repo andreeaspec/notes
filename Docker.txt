@@ -73,4 +73,19 @@ docker run -d --name mysql-db -e MYSQL_ROOT_PASSWORD=db_pass123 mysql
 # and data stored by the container at /opt/data on the host
 docker  run -d --name mysql-db -e MYSQL_ROOT_PASSWORD=db_pass123 -v /opt/data:/var/lib/mysql mysql
 
+# inspect docker networks 
+docker network ls 
+docker network inspect 1b1ebc73b90d
+
+#Create a new network named wp-mysql-network using the bridge driver. Allocate subnet 182.18.0.0/24. Configure Gateway 182.18.0.1 
+docker network create --driver bridge --subnet 182.18.0.0/24 --gateway 182.18.0.1 wp-mysql-network
+docker network inspect wp-mysql-network
+
+# Deploy a web application named webapp using the kodekloud/simple-webapp-mysql image with the port to #38080 on the host.
+# The application makes use of two environment variable DB_Host with the value mysql-db and DB_Password #with the value db_pass123.
+#attach the network called wp-mysql-network and  link the MySQL and the webapp container
+
+docker run --network=wp-mysql-network -e DB_Host=mysql-db -e DB_Password=db_pass123 -p 38080:8080 --name webapp --link mysql-db:mysql-db -d kodekloud/simple-webapp-mysql
+
+
 
