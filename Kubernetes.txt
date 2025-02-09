@@ -38,6 +38,10 @@ kubectl get replicationcontroller
 #5 level top properties in REPLICA SET - apiVersion, kind, metadata, spec, replicas and selector
 kubectl create -f replicaset-definition.yaml
 kubectl get replicaset
+
+# see the yaml definition of the replicaset
+kubectl get rs new-replica-set -o yaml
+
 #edit by opening a vim to the definition of the replica-set definition
 kubectl edit replicaset new-replica-set 
 
