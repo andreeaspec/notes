@@ -70,7 +70,7 @@ kubectl rollout history deployment/myapp-deployment
 # Rollback 
 kubectl rollout undo deployment myapp-deployment
 
-
+# a service can be used to expose an application to other aplications for external access
 # service commands - apiVersion: v1 kind: Service
 # Services - enables connectivity between pods-map a node port to a pod port
 # target port is the Pod port and NodePort (3000-32767 range) we use to access the service externally 
