@@ -1,5 +1,5 @@
 #4 level top properties in pod definition.yaml - apiVersion, kind, metadata and spec
-# get pods
+# get pods - internal IP in 10.244.0.0 range
 kubectl get pods
 kubectl get pods -o wide
 
@@ -50,7 +50,7 @@ kubectl replace -f replicaset-definition.yml
 kubectl scale --replicas=6  -f replicaset-definition.yml
 kubectl scale --replicas=5 replicaset new-replica-set 
 
-# deplyment commands - apiVersion: apps/v1 kind: Deployment
+# deployment commands - apiVersion: apps/v1 kind: Deployment
 
 kubectl create -f deployment
 kubectl create deployment httpd-frontend --image=httpd:2.4-alpine --replicas=3
@@ -69,5 +69,12 @@ kubectl rollout status deployment/myapp-deployment
 kubectl rollout history deployment/myapp-deployment
 # Rollback 
 kubectl rollout undo deployment myapp-deployment
+
+
+# service commands - apiVersion: v1 kind: Service
+# Services - enables connectivity between pods-map a node port to a pod port
+# target port is the Pod port and NodePort (3000-32767 range) we use to access the service externally 
+kubectl create -f service-definition.yaml
+kubectl get svc
 
 
