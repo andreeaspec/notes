@@ -49,3 +49,25 @@ kubectl edit replicaset new-replica-set
 kubectl replace -f replicaset-definition.yml
 kubectl scale --replicas=6  -f replicaset-definition.yml
 kubectl scale --replicas=5 replicaset new-replica-set 
+
+# deplyment commands - apiVersion: apps/v1 kind: Deployment
+
+kubectl create -f deployment
+kubectl create deployment httpd-frontend --image=httpd:2.4-alpine --replicas=3
+# CREATE&RECORD  
+kubectl create -f deployment-deployment-definition.yml --record
+kubectl get deployments
+
+# rollout commands:
+# Deployment Strategy - Recreate
+kubectl apply -f deployment-definition.yml
+
+# Deployment Strategy - Rolling Update -> deploymentul are alt config
+kubectl set image deployment/myapp-deployment \nginx-container=nginx:1.9.1
+kubectl describe deployment myapp-deployment
+kubectl rollout status deployment/myapp-deployment
+kubectl rollout history deployment/myapp-deployment
+# Rollback 
+kubectl rollout undo deployment myapp-deployment
+
+
