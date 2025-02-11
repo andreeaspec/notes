@@ -1,0 +1,115 @@
+# Ansible - automation tool using playbooks 
+# Ansible inventory stored in /etc/ansible/hosts/inventory
+# ansible_connection - ssh/winrm/localhost
+# ansible_port - 22 (default)/5986
+# ansible_user - root/administrator
+# ansible_ssh_pass - Password
+
+# Ansible playbooks - playbooks.yml-name,hosts, tasks
+# run the playbook command
+ansible-playbook <playbook file name>
+
+#-i INVENTORY specify inventory host path or comma separated host list
+ansible-playbook -i inventory playbook.yaml 
+
+#--syntax-check for errors
+ansible-playbook --syntax-check configure_database.yml
+
+#ensure that it adheres to best practices and doesn't have any style-related issues
+ansible-lint database_setup.yml
+
+ansible-inventory --list -i aws_inventory.py
+
+Examples:
+[bob@student-node playbooks]$ cat playbook.yaml 
+---
+- name: 'hosts'
+  hosts: all
+  become: yes
+  tasks:
+    - name: 'Execute a script'
+      script: '/tmp/install_script.sh'
+    - name: 'Start httpd service'
+      service:
+        name: 'httpd'
+        state: 'started'
+    - name: "Update /var/www/html/index.html"
+      lineinfile:
+        path: /var/www/html/index.html
+        line: "Welcome to ansible-beginning course"
+        create: true
+    - name: 'Create a new user'
+      user:
+        name: 'web_user'
+        uid: 1040
+        group: 'developers'
+ansible-playbook -i inventory playbook.yaml 
+# Variables - defined in Jinja2 Templating'{{Variable_name}}'
+# vars: in playbook
+
+[bob@student-node playbooks]$ cat inventory 
+localhost ansible_connection=local nameserver_ip=8.8.8.8 snmp_port=160-161
+node01 ansible_host=node01 ansible_ssh_pass=caleston123
+node02 ansible_host=node02 ansible_ssh_pass=caleston123
+[web_nodes]
+node01
+node02
+
+[all:vars]
+app_list=['vim', 'sqlite', 'jq']
+user_details={'username': 'admin', 'password': 'secret_pass', 'email': 'admin@example.com'}
+[bob@student-node playbooks]$ cat user_setup.yaml 
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Set up user
+      user: 
+        name: '{{ user_details.username}}'
+        password: '{{ user_details.password}}'
+        comment: '{{ user_details.email}}'
+        state: present
+		
+# Conditionals:
+
+- name: 'Check status of a service and email if its down'
+  hosts: localhost
+  tasks:
+    - command: service httpd status
+      register: result
+	  
+    - mail:
+	   to: admin@company.com
+       subject: Service Alert
+       body: Httpd Service is down
+	   when: result.stdout.find('down') != -1
+        state: 'started'
+
+[bob@student-node playbooks]$ cat nginx.yaml 
+---
+-  name: 'Execute a script on all web server nodes'
+   hosts: all
+   become: yes
+   tasks:
+     -  service: 'name=nginx state=started'
+        when: 'ansible_host=="node02"'
+
+[bob@student-node playbooks]$ cat nameserver.yaml 
+---
+- name: 'Add name server entry if not already entered'
+  hosts: localhost
+  become: yes
+  tasks:
+    - shell: 'cat /etc/resolv.conf'
+      register: command_output
+    - shell: 'echo "nameserver 10.0.250.10" >> /etc/resolv.conf'
+      when: 'command_output.stdout.find("10.0.250.10") == -1'
+
+# Loops- loop or with_* - lookup plugins
+name: Create users
+hosts: localhost
+tasks:
+  - user: name='{{ item }}' state=present
+    loop: 
+	  - joe
+	  - george
