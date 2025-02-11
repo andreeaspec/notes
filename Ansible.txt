@@ -1,4 +1,4 @@
-# Ansible - automation tool using playbooks 
+# Ansible - automation tool using playbooks, is a configuration management IAC(infrastucture as code) tool -idempotent (makes changes only if necessary # if run multiple times )
 # Ansible inventory stored in /etc/ansible/hosts/inventory
 # ansible_connection - ssh/winrm/localhost
 # ansible_port - 22 (default)/5986
