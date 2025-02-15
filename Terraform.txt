@@ -1,0 +1,95 @@
+Terraform 
+# is a infrastucture as code (IAC) - is a  infrastructure provisioning tool - supports all types of platforms 
+# uses hashicorp configuration language -HCL (.tf extension) 
+
+# 4 steps _ configuration file, terraform init, terraform plan, terraform apply
+# checks configuration file and initialize the working directory using the .tf file
+terraform init 
+
+# show the actions to create the resources - to review for the user
+terraform plan
+
+# shows the execution plan and creates the steps
+terraform apply 
+
+# show the resources created 
+terraform show
+
+#deletes the resources
+terraform destroy
+
+#download and install plugins for configurations - are downloaded in a hidden directory .terraform
+terraform init 
+#multiple providers supported in a single configuration file 
+#variables - defined in variables.tf and called in main.tf with var. Example:var.jedi["content"]
+#Terraform follows a variable definition precedence order to determine the value and the command line flag of –var or –var-file takes the highest priority.
+terraform apply -var-file variables.tfvars
+terraform apply -var "filename=/root/best-pet.txt"
+#$resource_type.resource_name -> implicit dependency 
+#content = "My favorite pet is ${random_pet.my-pet.id}"
+# depends_on = [random_pet.my-pet] -> explicit dependency 
+
+#Show the current state or a saved plan
+terraform show
+
+# display all ouput variables of all the files in the current configuration directory
+terraform output 
+
+#print the output of a specific variable
+terraform output <variable_name>
+
+#terraform.tfstate is created after terraform is applied at least once 
+# not refresh state - is relies on the cache attributes 
+terraform plan --refresh=false
+
+#Terraform commands:
+
+# check for errors in configuration file 
+terraform validate 
+
+# format the code to be more readable
+terraform fmt
+
+# show the state of the terraform 
+terraform show
+# show the state of the terraform in a json format
+terraform show -json
+
+# show the list of providers
+terraform providers
+
+#copy plugins in a new location 
+terraform providers mirror /root/terraform/new_local_file 
+
+# print the output of all variables
+terraform output
+# print the output of a specific variable
+terraform ouput variable_name
+
+#update the state files -> modifies the state files
+terraform refresh 
+
+#create a visual representation of the dependencies - generates a graph that can be shown with a graph visualization software
+#apt update
+#apt install graphviz -y
+#terraform graph | dot -Tsvg > graph.svg
+terraform graph
+
+#Life cycle rules
+# create_before_destroy set to true update before delete resource
+lifecycle {
+ create_before_destroy = true  
+ }
+# do not destroy resource at all - prevent_destroy set to true 
+# datasources
+data "local_file" {
+  filename = "/root/dog.txt"
+  }
+
+#meta arguments: 
+#depends_on, 
+#lifecycle, 
+#count (exe count = length(var.filename) - returns a list
+#for_each (for_each = toset(var.filename)) -returns a map
+
+# Version constrains - add a bloc in main.tf with required_providers to specify the version wanted 
