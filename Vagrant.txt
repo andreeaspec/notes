@@ -1,0 +1,32 @@
+Vagrant - automates installing  and configuring VMs
+
+#vagrant boxes available online
+vagrant init centos/7 
+
+#bringing machine up with virtualbox provider
+vagrant up 
+vagrant suspend
+vagrant resume
+#stop the machine
+vagrant halt
+#stop and deletes all traces of vagrant machine 
+vagrant destroy
+vagrant status
+vagrant reload 
+vagrant snapshot
+
+Vagrant file example 
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "centos/7"
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.synced_folder "../data", "/vagrant_data"
+  config.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+  end 
+  config.vm.provision "shell", inline: ,,-SHELL
+      apt-get update
+	  apt-get install -y apache2
+  SHELL
+end
+end
