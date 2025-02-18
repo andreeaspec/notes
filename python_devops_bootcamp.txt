@@ -1,0 +1,65 @@
+Python notes
+
+- Conditional Statements:
+
+if condition:
+  print("The condition is true")
+elif second_condition:
+  print("Only the second condition is true")
+else:
+  print("Both conditions are false")  
+
+- Loops:
+1. While loop 
+
+secret_number = 3
+guess = int(input("Guess a number: "))
+while guess != secret_number:
+  guess = int(input("Guess a number: "))
+else:
+  print("Congratulation, you got it!") 
+
+2. For loop 
+
+for i in range(5):
+  if(i == 2):
+    continue
+  print("i is: ", i)
+
+- Operators:
+AND - true & false = false
+OR - true or false = true
+NOT 
+
+- Bitwise Operands 
+& Conjunction - true for 1 & 1 otherwise returns 0 (exe 15& 22 -> 0b1111 & 0b10110 -> 00000110 = 6)
+| Disjunction - true for 1 | 1, 0 | 1(exe 15 | 22 -> 0b1111 | 0b10110 -> 00011111 = 31)
+~ Negation (exe ~22 = ~00010110 = 11101001= -23)
+^ Exclusive XOR - true for 1^0 only (exe 15 ^ 22 -> 0b1111 ^ 0b10110 =00011001=25)
+>> Bit Shift Right (exe 22>>1 = 00010110>>1 = 00001011=11 )
+<< Bit Shift Left 
+
+-Lists:
+countries= ["USA", "Canada", "India"]
+len(countries), del contries[1], list.append("Spain") - adauga la sf listei, list.insert(2, "Italy")
+list.sort()- sortare crescatoare by default, list.reverse()
+Slicing lists
+list[start:end]-de la start pana la end dar fara end inclus exe list[1:], list[:3]
+enumerate(list)
+
+-Tuple - imutable data type tuple1 = (1,2,3)
+-Dictionary - key-values pairs 
+usernames = {
+  "lydia": "lala",
+  "sarah": "sarah123",
+  "max": "max_",
+  "joe":"joejoe"
+}
+dictionary.keys() -> print(usernames.keys()) -> iterable key list returned 
+dictionary.values()
+dictionary.items() - returns tuple key-value pair 
+dictionary.update() - usernames.update({"chloe": "chloe123"})
+del usernames["max"]
+dictionary.clear() - delete all items from dict 
+dictionary.popitem() - delete last item from dict 
+dictionary.copy() - copy dict 
