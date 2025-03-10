@@ -1,1 +1,8 @@
 
+The three basic types of cloud services are:
+Computing - These include EC2, Elastic Beanstalk, Lambda, Auto-Scaling, and Lightsat.
+Storage - These include S3, Glacier, Elastic Block Storage, Elastic File System.
+Networking - These include VPC, Amazon CloudFront, Route53
+
+AWS REGION=A PHYSICAL LOCATION-consists of multiple(3min) AVAILABILITY ZONES
+AWS has the concept of a Region, which is a physical location around the world where AWS clusters data centers. Each AWS Region consists of multiple (three or more), isolated, and physically separate Availability Zones (AZ) within a geographic area. Each Availability Zone (AZ) has independent power, cooling, and physical security and is connected via redundant, ultra-low-latency networks
