@@ -6,3 +6,11 @@ Networking - These include VPC, Amazon CloudFront, Route53
 
 AWS REGION=A PHYSICAL LOCATION-consists of multiple(3min) AVAILABILITY ZONES
 AWS has the concept of a Region, which is a physical location around the world where AWS clusters data centers. Each AWS Region consists of multiple (three or more), isolated, and physically separate Availability Zones (AZ) within a geographic area. Each Availability Zone (AZ) has independent power, cooling, and physical security and is connected via redundant, ultra-low-latency networks
+
+The 5 Pillars of the AWS Well-Architected Framework
+
+Security - Identity and key management, Encryption, Security monitoring and logging, dedicated instances, compliance, governance 
+Cost Optimization - RI and spot, volume tuning, service selection, consolidated billing, resource utilization, decommisioning
+Reliability -  Service limits, multi A-Z regions, scalability, health checks and monitoring, networking, self healing/disaster recovery
+Performance Efficiency - Right AWS Services, storage arhitecture, resource utilization, caching, latency requirements, planning and benchmarking
+Operational Excellence -CI/CD, runbooks, playbooks, game days, Infrastructure as a code IaaC, RCAS
