@@ -23,3 +23,32 @@ S3- Amazon Simple Storage Service (Amazon S3) is an object storage service offer
 - Amazon S3 stores data as objects within buckets. An object is a file and any metadata that describes the file. A bucket is a container for objects. To store your data in Amazon S3, you first create a bucket and specify a bucket name and AWS Region. Then, you upload your data to that bucket as objects in Amazon S3. Each object has a key (or key name), which is the unique identifier for the object within the bucket
 - Storage classes:
 S3 Intelligent-Tiering, S3 Standard, S3 Express One Zone, S3 Standard-Infrequent Access (S3 Standard-IA), S3 One Zone-Infrequent Access (S3 One Zone-IA), S3 Glacier Instant Retrieval, S3 Glacier Flexible Retrieval, S3 Glacier Deep Archive, and S3 Outposts
+
+AMAZON ELASTIC COMPUTE CLOUD EC2
+EC2-Amazon Elastic Compute Cloud - provides on-demand, scalable computing capacity in the Amazon Web Services (AWS) Cloud.
+- An EC2 instance is a virtual server in the AWS Cloud. When you launch an EC2 instance, the instance type that you specify determines the hardware available to your instance. Each instance type offers a different balance of compute, memory, network, and storage resources
+
+You can create and manage your Amazon EC2 instances using the following interfaces:
+-Amazon EC2 console - You can use EC2 Instance Connect to connect to your instances using the Amazon EC2 console or the SSH client of your choice.
+-AWS Command Line Interface
+-AWS CloudFormation
+-AWS SDKs
+-AWS Tools for PowerShell
+-Query API
+
+Pricing for Amazon EC2:
+-Free Tier
+-On-Demand Instances-Pay for the instances that you use by the second, with a minimum of 60 seconds, with no long-term commitments or upfront payments.
+
+-Savings Plans- You can reduce your Amazon EC2 costs by making a commitment to a consistent amount of usage, in USD per hour, for a term of 1 or 3 years.
+
+-Reserved Instances- You can reduce your Amazon EC2 costs by making a commitment to a specific instance configuration, including instance type and Region, for a term of 1 or 3 years.
+
+-Spot Instances- Request unused EC2 instances, which can reduce your Amazon EC2 costs significantly.
+
+-Dedicated Hosts- Reduce costs by using a physical EC2 server that is fully dedicated for your use, either On-Demand or as part of a Savings Plan. You can use your existing server-bound software licenses and get help meeting compliance requirements.
+
+-On-Demand Capacity Reservations-Reserve compute capacity for your EC2 instances in a specific Availability Zone for any duration of time.
+
+-Per-second billing-Removes the cost of unused minutes and seconds from your bill.
+
