@@ -1,2 +1,13 @@
 SQL-Sequence Query Language
 
+SELECT first_name, last_name, email FROM customer;
+
+#select distinct entries
+SELECT DISTINCT rating FROM film; 
+
+#return nr of distinct ratings from film table - Count uses () mandatory
+SELECT  COUNT(DISTINCT rating) FROM film;
+
+SELECT email FROM customer
+WHERE first_name ='Nancy'  AND last_name = 'Thomas';
+
