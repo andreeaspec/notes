@@ -11,3 +11,16 @@ SELECT  COUNT(DISTINCT rating) FROM film;
 SELECT email FROM customer
 WHERE first_name ='Nancy'  AND last_name = 'Thomas';
 
+SELECT store_id, first_name,last_name  FROM customer
+ORDER BY store_id,first_name 
+
+#list first 10 customers
+SELECT customer_id FROM payment
+ORDER BY payment_date
+LIMIT 10
+
+SELECT title,length  from film
+ORDER BY length ASC
+LIMIT 5
+
+
