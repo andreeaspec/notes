@@ -23,4 +23,20 @@ SELECT title,length  from film
 ORDER BY length ASC
 LIMIT 5
 
+SELECT * FROM payment
+WHERE payment_date BETWEEN '2007-02-20' AND '2007-02-21';
+
+SELECT * FROM payment
+WHERE amount NOT BETWEEN 8 AND 9;
+
+SELECT * FROM payment
+WHERE amount IN (0.99, 1.99)
+
+SELECT * FROM customer
+WHERE first_name NOT IN ('Marie','Ann')
+
+#LIKE - case sensitive, ILIKE- case insensitive
+# Wildcard characters: % matches any sequence of characters, _ matches any single character 
+
+
 
