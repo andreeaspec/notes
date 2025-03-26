@@ -44,4 +44,15 @@ WHERE first_name LIKE 'J%'
 SELECT * FROM customer
 Where first_name LIKE '_her%'
 
+#(MIN/MAX/AVG/SUM)
+SELECT MIN(replacement_cost) FROM film 
+#ROUND- rotunjeste raspunsul la valoarea specificata dupa virgula (exe: 3 decimale)
+SELECT ROUND(AVG(replacement_cost),3) FROM film 
 
+#GROUP BY
+SELECT customer_id,staff_id,SUM(amount) FROM payment
+GROUP BY staff_id, customer_id
+ORDER BY customer_id
+
+SELECT staff_id, COUNT(amount) FROM payment
+GROUP BY staff_id
