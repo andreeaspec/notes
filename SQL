@@ -66,3 +66,9 @@ SELECT customer_id, staff_id,SUM(amount) FROM payment
 WHERE staff_id=2
 GROUP BY customer_id, staff_id 
 HAVING SUM(amount) >= 100
+
+#INNER JOIN - matching of entries in both tables
+SELECT payment_id, payment.customer_id, first_name
+FROM payment
+INNER JOIN customer
+ON payment.customer_id = customer.customer_id
