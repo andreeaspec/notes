@@ -37,6 +37,11 @@ WHERE first_name NOT IN ('Marie','Ann')
 
 #LIKE - case sensitive, ILIKE- case insensitive
 # Wildcard characters: % matches any sequence of characters, _ matches any single character 
-
+#list all entries with first_name starting with 'J'
+SELECT * FROM customer
+WHERE first_name LIKE 'J%'
+#list all entries with first_name containing one character followed by 'her' and any sequence
+SELECT * FROM customer
+Where first_name LIKE '_her%'
 
 
