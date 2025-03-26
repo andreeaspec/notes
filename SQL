@@ -86,6 +86,11 @@ FROM film
 LEFT JOIN inventory
 ON inventory.film_id = film.film_id
 
+SELECT  district,email FROM customer
+LEFT JOIN address
+ON customer.address_id = address.address_id
+WHERE address.district= 'California'
+
 
 
 
