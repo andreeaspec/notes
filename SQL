@@ -98,6 +98,11 @@ INNER JOIN  film
 ON film.film_id=film_actor.film_id
 WHERE actor.first_name= 'Nick' AND actor.last_name = 'Wahlberg'
 
+SELECT EXTRACT(YEAR FROM payment_date) from payment
+
+SELECT DISTINCT TO_CHAR(payment_date,'MONTH')  FROM payment
+WHERE amount > 0.1
+
 
 
 
