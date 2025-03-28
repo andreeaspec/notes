@@ -140,7 +140,7 @@ VALUES
 UPDATE account
 SET last_login = CURRENT_TIMESTAMP
 
-#update based on results from another table
+#update based on results from another table (UPDATE JOIN)
 UPDATE account_job
 SET hire_date = account.created_on
 FROM account
