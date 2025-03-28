@@ -146,3 +146,26 @@ SET hire_date = account.created_on
 FROM account
 WHERE account_job.user_id=account.user_id
 
+#delete row in table
+DELETE FROM  job 
+WHERE job_name = 'cici'
+RETURNING job_id, job_name -- return rows that are deleted
+
+#rename table
+ALTER TABLE job
+RENAME TO new_job
+
+#rename column in table
+ALTER TABLE account
+RENAME COLUMN username TO people
+
+#CASE
+SELECT customer_id,
+CASE
+	WHEN (customer_id <= 100) THEN 'Premium'
+	WHEN (customer_id BETWEEN 100 and 200) THEN 'Plus'
+	ELSE 'Normal'
+END
+FROM customer
+
+
