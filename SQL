@@ -106,7 +106,7 @@ WHERE amount > 0.1
 #concatenation and adding space between fisrt and last name
 SELECT first_name || ' ' || last_name from customer
 
-#subquery
+#subquery - is executed first
 SELECT title,rental_rate FROM Film
 WHERE rental_rate>(SELECT AVG(rental_rate) FROM film)
 
@@ -116,6 +116,33 @@ WHERE film_id IN
 INNER JOIN inventory ON inventory.inventory_id = rental.inventory_id
 WHERE return_date BETWEEN '2005-05-29' AND '2005-05-30')
 
+SELECT facid,SUM(slots) FROM cd.bookings
+WHERE starttime >=  '2012-09-01' AND starttime <=  '2012-10-01'
+GROUP BY facid ORDER BY SUM(slots)
 
+#create TABLE - 
+CREATE TABLE job(
+	job_id SERIAL PRIMARY KEY, 
+	job_name VARCHAR(200) UNIQUE NOT NULL
+)
+#create table and relation with other table 
+CREATE TABLE account_job(
+	user_id INTEGER REFERENCES account(user_id)
+	job_id INTEGER REFERENCES job(job_id),
+	hire_date TIMESTAMP
+)
+#insert into table
+INSERT INTO account (username, password, email, created_on)
+VALUES
+('Jose', 'password','jose@email.com', CURRENT_TIMESTAMP)
 
+#update table
+UPDATE account
+SET last_login = CURRENT_TIMESTAMP
+
+#update based on results from another table
+UPDATE account_job
+SET hire_date = account.created_on
+FROM account
+WHERE account_job.user_id=account.user_id
 
