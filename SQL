@@ -68,12 +68,14 @@ GROUP BY customer_id, staff_id
 HAVING SUM(amount) >= 100
 
 #INNER JOIN - matching of entries in both tables
+#An INNER JOIN will result with the set of records that match in both tables.
 SELECT payment_id, payment.customer_id, first_name
 FROM payment
 INNER JOIN customer
 ON payment.customer_id = customer.customer_id
 
 #FULL OUTER JOIN 
+#A FULL OUTER JOIN will result in the set of all records in both tables.
 SELECT * FROM customer
 FULL OUTER JOIN payment
 ON customer.customer_id = payment.customer_id
@@ -81,6 +83,8 @@ WHERE customer.customer_id IS null
 OR payment.payment_id IS null
 
 #LEFT JOIN
+#A LEFT OUTER JOIN results in the set of records that are in the left table, 
+if there is no match with the right table, the results are null.
 SELECT film.film_id, title,inventory_id,store_id 
 FROM film
 LEFT JOIN inventory
