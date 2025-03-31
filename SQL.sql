@@ -181,3 +181,12 @@ ON Registrations.id = Logins.id
 WHERE abs(date(Registrations.date)-date(Logins.date)) < 7
 GROUP BY Registrations.id
 
+--Write a query to list the names of all the salespeople that have an order with Hooli
+-- subquery 
+SELECT Salespeople.Name FROM Salespeople
+WHERE Salespeople.ID IN
+(SELECT Salesperson_id
+FROM Orders
+JOIN Customers ON Customers.ID = Orders.Cust_id
+WHERE Customers.Name = ‘Hooli’)
+
