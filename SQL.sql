@@ -217,3 +217,12 @@ COMMIT;
 -- If any error occurs, such as an issue with the UPDATE query, 
 -- you can use ROLLBACK to undo all changes made during the transaction:
 ROLLBACK;
+
+--What Are Indexes in SQL?
+--An index in SQL is a schema object that improves the speed of data retrieval 
+-- operations on a table. It works by creating a separate data structure that 
+-- provides pointers to the rows in a table, making it faster to look 
+-- up rows based on specific column values. Indexes act as a table of 
+-- contents for a database, allowing the server to locate data quickly 
+-- and efficiently, reducing disk I/O operations.
+	
