@@ -190,3 +190,30 @@ FROM Orders
 JOIN Customers ON Customers.ID = Orders.Cust_id
 WHERE Customers.Name = ‘Hooli’)
 
+--TRANSACTIONS - all changes made within it should either be completely successful or fully
+-- undone in case of failure. In the case of an error, a rollback ensures that no partial 
+-- changes are saved.
+
+-- A query is a single SQL statement used to retrieve or modify data in the database, 
+-- while a transaction is a series of queries that are executed together to ensure data consistency,
+-- with support for commit or rollback in case of errors.
+
+-- BEGIN TRANSACTION: Starts a transaction.
+-- COMMIT: Commits the transaction, saving all changes made.
+-- ROLLBACK: Rolls back the transaction, undoing all changes made since the BEGIN TRANSACTION.
+-- SAVEPOINT: Marks a point within a transaction to which you can later roll back.
+--EXAMPLE:
+BEGIN TRANSACTION;
+-- Deduct $150 from Account A
+UPDATE Accounts
+SET Balance = Balance - 150
+WHERE AccountID = 'A';
+-- Add $150 to Account B
+UPDATE Accounts
+SET Balance = Balance + 150
+WHERE AccountID = 'B';
+-- Commit the transaction if both operations succeed
+COMMIT;
+-- If any error occurs, such as an issue with the UPDATE query, 
+-- you can use ROLLBACK to undo all changes made during the transaction:
+ROLLBACK;
