@@ -172,4 +172,12 @@ CASE
 END
 FROM customer
 
+-- Write a query that will give the number of times each user logged in within 
+-- their first week of registration (i.e. within 7 days after registering for the site)
+	
+SELECT Registrations.id, count(Registrations.id) FROM Registrations
+INNER JOIN Logins
+ON Registrations.id = Logins.id
+WHERE abs(date(Registrations.date)-date(Logins.date)) < 7
+GROUP BY Registrations.id
 
