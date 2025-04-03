@@ -1,0 +1,75 @@
+#Install AWS ElastiBeanstalk CLI
+C:\Users\Andreea>pip install pyyaml==5.3.1 awsebcli 
+
+# Elasticbeanstalk commands starts with eb
+C:\Users\Andreea>eb 
+usage: eb (sub-commands ...) [options ...] {arguments ...}
+Welcome to the Elastic Beanstalk Command Line Interface (EB CLI).
+For more information on a specific command, type "eb {cmd} --help".
+commands:
+  abort        Cancels an environment update or deployment.
+  appversion   Listing and managing application versions
+
+#Steps to create django project 
+C:\Users\Andreea>cd Desktop
+
+C:\Users\Andreea\Desktop>mkdir devtest
+
+C:\Users\Andreea\Desktop>cd devtest
+
+#Install package called virtualenv
+C:\Users\Andreea\Desktop\devtest>pip install virtualenv
+
+#Create virtual environment called venv
+C:\Users\Andreea\Desktop\devtest>virtualenv venv
+
+#Activate venv 
+C:\Users\Andreea\Desktop\devtest>venv\Scripts\activate
+(venv) C:\Users\Andreea\Desktop\devtest>
+
+#Install django in venv
+(venv) C:\Users\Andreea\Desktop\devtest>pip install django
+
+(venv) C:\Users\Andreea\Desktop\devtest>pip install gunicorn
+
+#Create django project called pretest
+(venv) C:\Users\Andreea\Desktop\devtest>django-admin startproject pretest
+(venv) C:\Users\Andreea\Desktop\devtest>cd pretest
+
+(venv) C:\Users\Andreea\Desktop\devtest\pretest>
+#Start django app
+(venv) C:\Users\Andreea\Desktop\devtest\pretest>python manage.py runserver
+
+#Generate requirements - min packages required to install app 
+(venv) C:\Users\Andreea\Desktop\devtest\pretest>pip freeze > requirements.txt
+
+requirements.txt
+asgiref==3.8.1
+Django==5.2
+gunicorn==23.0.0
+packaging==24.2
+sqlparse==0.5.3
+typing_extensions==4.13.1
+tzdata==2025.2
+
+#Configure AWS credentials:
+PS C:\Users\Andreea> aws configure
+AWS Access Key ID [****************RTU5]: *PUNE_AICI_DIN_XLS Andreea_accessKeys*
+AWS Secret Access Key [****************2DRE]: *PUNE_AICI_DIN_XLS Andreea_accessKeys*
+Default region name [us-east-2]:
+Default output format [json]:
+
+
+(venv) C:\Users\Andreea\Desktop\devtest\pretest>cd ..
+
+(venv) C:\Users\Andreea\Desktop\devtest>venv\Scripts\deactivate
+C:\Users\Andreea\Desktop\devtest>
+
+C:\Users\Andreea\Desktop\devtest>cd pretest
+
+#Install ElasticBeanstalk application 
+C:\Users\Andreea\Desktop\devtest\pretest>eb init 
+
+Select a default region
+1) us-east-1 : US East (N. Virginia)
+
