@@ -1,4 +1,12 @@
 #Install AWS ElastiBeanstalk CLI
+Elastic Beanstalk - PaaS to create applications
+-It creates Environment 
+-Amazon S3 storage bucket for environment data
+-Creates security/target groups
+-Creates Auto scaling group/policy
+-Creates CloudWatch alarms
+-Creates Load Balancer
+
 C:\Users\Andreea>pip install pyyaml==5.3.1 awsebcli 
 
 # Elasticbeanstalk commands starts with eb
