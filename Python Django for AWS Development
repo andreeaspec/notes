@@ -150,5 +150,10 @@ Printing Status:
 2025-04-04 06:36:23    INFO    Application available at pretest-dev.us-east-2.elasticbeanstalk.com.
 2025-04-04 06:36:24    INFO    Successfully launched environment: pretest-dev
 
+#Open application 
+C:\Users\Andreea\Desktop\devtest\pretest>eb open
+#Reploy after changes with the command
+C:\Users\Andreea\Desktop\devtest\pretest>eb deploy
+#NOTES
 in AWS see that it was created in Elastic Beanstalk->Environments 
 DELETE environment and application at the end!!
