@@ -72,4 +72,75 @@ C:\Users\Andreea\Desktop\devtest\pretest>eb init
 
 Select a default region
 1) us-east-1 : US East (N. Virginia)
+..
+(default is 3): 14
 
+Enter Application Name
+(default is "pretest"):
+Application pretest has been created.
+
+It appears you are using Python. Is this correct?
+(Y/n): Y
+Select a platform branch.
+1) Python 3.13 running on 64bit Amazon Linux 2023
+2) Python 3.12 running on 64bit Amazon Linux 2023
+3) Python 3.11 running on 64bit Amazon Linux 2023
+4) Python 3.9 running on 64bit Amazon Linux 2023
+5) Python 3.8 running on 64bit Amazon Linux 2 (Deprecated)
+(default is 1): 1
+
+Cannot setup CodeCommit because there is no Source Control setup, continuing with initialization
+Do you want to set up SSH for your instances?
+(Y/n): n
+
+C:\Users\Andreea\Desktop\devtest\pretest>
+
+C:\Users\Andreea\Desktop\devtest\pretest>eb create
+Enter Environment Name
+(default is pretest-dev):
+Enter DNS CNAME prefix
+(default is pretest-dev):
+
+Select a load balancer type
+1) classic
+2) application
+3) network
+(default is 2):
+
+Would you like to enable Spot Fleet requests for this environment? (y/N): N
+
+2.0+ Platforms require a service role. We will attempt to create one for you. You can specify your own role using the --service-role option.
+Type "view" to see the policy, or just press ENTER to continue:
+Creating application version archive "app-250404_093244204415".
+Uploading pretest/app-250404_093244204415.zip to S3. This may take a while.
+Upload Complete.
+Environment details for: pretest-dev
+  Application name: pretest
+  Region: us-east-2
+  Deployed Version: app-250404_093244204415
+  Environment ID: e-tt3x6c3gps
+  Platform: arn:aws:elasticbeanstalk:us-east-2::platform/Python 3.13 running on 64bit Amazon Linux 2023/4.5.0
+  Tier: WebServer-Standard-1.0
+  CNAME: pretest-dev.us-east-2.elasticbeanstalk.com
+  Updated: 2025-04-04 06:32:47.430000+00:00
+Printing Status:
+2025-04-04 06:32:46    INFO    createEnvironment is starting.
+2025-04-04 06:32:47    INFO    Using elasticbeanstalk-us-east-2-430118859676 as Amazon S3 storage bucket for environment data.
+2025-04-04 06:33:16    INFO    Created security group named: sg-0dae73f0c5ee45d26
+2025-04-04 06:33:31    INFO    Created target group named: arn:aws:elasticloadbalancing:us-east-2:430118859676:targetgroup/awseb-AWSEB-KYQV4BJW3SVM/6da3711b363f5e14
+2025-04-04 06:33:31    INFO    Created security group named: awseb-e-tt3x6c3gps-stack-AWSEBSecurityGroup-37ABnjH6WRPF
+2025-04-04 06:34:02    INFO    Created Auto Scaling group named: awseb-e-tt3x6c3gps-stack-AWSEBAutoScalingGroup-xsHViVBKyXGc
+2025-04-04 06:34:02    INFO    Waiting for EC2 instances to launch. This may take a few minutes.
+2025-04-04 06:34:18    INFO    Created Auto Scaling group policy named: arn:aws:autoscaling:us-east-2:430118859676:scalingPolicy:5db5e7bc-d485-43b8-a85a-61d0da9dce12:autoScalingGroupName/awseb-e-tt3x6c3gps-stack-AWSEBAutoScalingGroup-xsHViVBKyXGc:policyName/awseb-e-tt3x6c3gps-stack-AWSEBAutoScalingScaleUpPolicy-WFVTJlWpLK4a
+2025-04-04 06:34:18    INFO    Created Auto Scaling group policy named: arn:aws:autoscaling:us-east-2:430118859676:scalingPolicy:c464d9d0-c8b9-4255-9091-8efe3b82e6b0:autoScalingGroupName/awseb-e-tt3x6c3gps-stack-AWSEBAutoScalingGroup-xsHViVBKyXGc:policyName/awseb-e-tt3x6c3gps-stack-AWSEBAutoScalingScaleDownPolicy-RWwwhVS3UZXn
+2025-04-04 06:34:18    INFO    Created CloudWatch alarm named: awseb-e-tt3x6c3gps-stack-AWSEBCloudwatchAlarmHigh-IGZJRKlztOb2
+2025-04-04 06:34:18    INFO    Created CloudWatch alarm named: awseb-e-tt3x6c3gps-stack-AWSEBCloudwatchAlarmLow-HirTGPTZHIcw
+2025-04-04 06:35:50    INFO    Created load balancer named: arn:aws:elasticloadbalancing:us-east-2:430118859676:loadbalancer/app/awseb--AWSEB-u7Rcq1AHXBZn/914c598bf3920269
+2025-04-04 06:35:50    INFO    Created Load Balancer listener named: arn:aws:elasticloadbalancing:us-east-2:430118859676:listener/app/awseb--AWSEB-u7Rcq1AHXBZn/914c598bf3920269/2fd990ef6d9aae94
+2025-04-04 06:36:01    INFO    Instance deployment successfully generated a 'Procfile'.
+2025-04-04 06:36:07    INFO    Instance deployment completed successfully.
+2025-04-04 06:36:23    INFO    Application available at pretest-dev.us-east-2.elasticbeanstalk.com.
+2025-04-04 06:36:24    INFO    Successfully launched environment: pretest-dev
+
+in AWS see that it was created in Elastic Beanstalk->Environments 
+DELETE environment and application at the end!!
