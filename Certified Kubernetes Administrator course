@@ -1,1 +1,14 @@
+Certified Kubernetes Administrator course - NOTES
 
+CLUSTER ARHITECTURE:
+KUBERNETIC CLUSTER 
+-a set of NODES physical/virtual on premises/on cloud that hosts applications in the form of a container
+-contains WORKER NODES and a MASTER NODE(mamage worker nodes using control plane components)
+ON MASTER we have: 
+-ETCD CLUSTER- a database that stores information in a key/value format 
+-KUBE-SCHEDULER - identifies the right node to place a container on 
+-KUBE CONTROLLER- Node Controller, Replication Controller 
+-KUBE-APISERVER - primary management component of kubernetics 
+ON WORKER nodes we have:
+-KUBELET - an agent that runs on each node on a cluster -listens from instructions from apiserver 
+-KUPE-PROXY that helps enabling communication between services in the cluster 
