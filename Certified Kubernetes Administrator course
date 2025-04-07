@@ -44,6 +44,8 @@ spec:
 	  image: nginx
 
 Commands:
+# Generate POD Manifest YAML file (-o yaml)
+kubectl run nginx --image=nginx --dry-run=client -o yaml
 kubectl create -f pod-definition.yml
 kubectl get pods
 kubectl describe pod myapp-pod
@@ -58,15 +60,62 @@ kubectl create -f rc-definition.yml
 kubectl get replicationController
 
 ReplicaSets:
+controlplane ~ ✖ cat replicaset-definition-1.yaml 
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replicaset-1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+
 kubectl create -f replicaset-definition.yml
 kubectl get replicaset
 kubectl replace -f replicaset-definition.yml #if we want to update the nr of replicas
 kubectl scale --replicas=6 replicaset-definition.yml # se poate face si cu scale dar in yaml raman tot 3 setate
 kubectl scale --replicas=6 replicaset myapp-replicaset 
+kubectl edit  replicasets new-replica-set  # edit something in the replicaset def- delete pods to apply changes
 
+DEPLOYMENTS - provides the capabilities to perform upgrades seemlessly using rolling updates, undo changes
 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpd-frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: httpd-frontend-pod
+  template:
+    metadata:
+      labels:
+        name: httpd-frontend-pod
+    spec:
+      containers:
+      - name: httpd-frontend
+        image: httpd:2.4-alpine
 
-
+Commands:
+#Generate Deployment YAML file (-o yaml)
+kubectl create deployment --image=nginx nginx --dry-run=client -o yaml
+kubectl create deployment --image=nginx nginx --dry-run=client -o yaml > nginx-deployment.yaml
+kubectl create -f deployment-definition.yaml
+kubectl create deployment --image=nginx nginx --replicas=4 --dry-run=client -o yaml > nginx-deployment.yaml
+kubectl get deployments
+kubectl get replicaset
+kubectl get pods
+kubectl get all- vezi toate cele 3 de sus 
 
 
 
