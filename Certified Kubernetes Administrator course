@@ -7,8 +7,31 @@ KUBERNETIC CLUSTER
 ON MASTER we have: 
 -ETCD CLUSTER- a database that stores information in a key/value format 
 -KUBE-SCHEDULER - identifies the right node to place a container on 
--KUBE CONTROLLER- Node Controller, Replication Controller 
+-KUBE CONTROLLER - Node Controller, Replication Controller 
 -KUBE-APISERVER - primary management component of kubernetics 
 ON WORKER nodes we have:
 -KUBELET - an agent that runs on each node on a cluster -listens from instructions from apiserver 
 -KUPE-PROXY that helps enabling communication between services in the cluster 
+
+ETCD Cluster - stores informations about Nodes, pods, configs, secrets, accounts, roles, bindings 
+  -is installed on master node
+  -listens on port 2379 
+
+KUBE-API SERVER - the only component that interact directly with the ETCD Cluster
+  -is responsible for authenticating and validating requests, retriving data, updating the ETCD, 
+interacting with Scheduler and Kubelet(they are using the Kube-api to perform updates in the cluster)
+
+KUBE CONTROLLER - a process that continously monitors the status of the cluster 
+- Node Controller - checks the health of the nodes 
+- Replication Controllers - monitors the status of replica sets- assures the desired number of pods 
+-all controllers are installed in Kube-Controller-Manager 
+
+-KUBE-SCHEDULER - decides with pods goes on which node (only decides, not place it) 
+-KUBELET - register Node, create PODs, monitors Node and PODs (kubeadmn dos not automatically deploys kubelet)
+-KUPE-PROXY - is a process that runs on each node in cluster 
+-looks for new servicess, and every time a new service is created it creates the rulles to fwd traffic to pods
+-uses ip-table rulles 
+
+
+
+
