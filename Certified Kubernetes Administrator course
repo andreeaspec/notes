@@ -200,3 +200,7 @@ kubectl expose pod nginx --type=NodePort --port=80 --name=nginx-service --dry-ru
 #You have to generate a definition file and then add the node port in manually before creating the
 #service with the pod.) Or
 kubectl create service nodeport nginx --tcp=80:80 --node-port=30080 --dry-run=client -o yaml
+
+controlplane ~ ➜  kubectl run httpd --image=httpd:alpine --port=80 --expose
+service/httpd created
+pod/httpd created
