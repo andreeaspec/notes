@@ -117,6 +117,29 @@ kubectl get replicaset
 kubectl get pods
 kubectl get all- vezi toate cele 3 de sus 
 
+SERVICES - enables communications between various components of an application - enables connectivity between the group of PODS
+- NODE PORT SERVICE 
+   - an object that listens to a port of a node and forwards the request to a port of the application 
+   - range 30000-32767
+- CLUSTERIP 
+- LOADBALANCER 
 
-
+service-definition.yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+spec:
+  type: NodePort # ClusterIP/LoadBalancer
+  ports:
+    - targetPort: 80
+      port: 80
+	  nodePort: 3008
+  selector:
+    app: myapp
+	type: front-end
+Commands:
+kubectl create -f service-definition.yml
+kubectl get services 
+kubectl describe services kubernetes_service_name
 
