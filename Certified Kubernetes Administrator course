@@ -32,6 +32,33 @@ KUBE CONTROLLER - a process that continously monitors the status of the cluster
 -looks for new servicess, and every time a new service is created it creates the rulles to fwd traffic to pods
 -uses ip-table rulles 
 
+pod_def.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  type: front-end
+spec:
+  containers:
+    - name: nginx-controller
+	  image: nginx
+
+Commands:
+kubectl create -f pod-definition.yml
+kubectl get pods
+kubectl describe pod myapp-pod
+
+Commands:
+
+kubectl create -f pod-definition.yml
+kubectl get pods
+kubectl describe pod myapp-pod
+
+Example - Create a new pod with the name redis and the image redis123.
+controlplane ~ ➜  kubectl run redis --image=redis123 --dry-run=client -o yaml > redis-definition.yaml
+controlplane ~ ➜  kubectl create -f redis-definition.yaml
+pod/redis created
+
 
 
 
