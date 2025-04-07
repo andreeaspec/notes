@@ -150,6 +150,9 @@ kubectl get namespaces
 #create a pod in a different namespace than default
 kubectl create -f pod-definition.yml --namespace=dev
 
+#create a new namespace called dev-ns
+kubectl create namespace dev-ns
+
 #get pods from the dev namespace
 kubectl get pods --namespace=dev 
 
