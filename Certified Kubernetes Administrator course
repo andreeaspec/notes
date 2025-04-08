@@ -285,3 +285,7 @@ kubectl create -f deploy/1.8+/
 #see metrics
 kubectl top node
 kubectl top pods 
+
+LOGS:
+kubectl logs -f pod_name 
+kubectl logs -f pod_name container_name
