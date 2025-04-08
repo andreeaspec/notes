@@ -274,3 +274,14 @@ kubectl run --restart=Never --image=busybox static-busybox --dry-run=client -o y
 #Multiple SCHEDULERS
 kubectl create configmap my-scheduler-config --from-file=/root/my-scheduler-config.yaml -n kube-system 
 kubectl get configmap my-scheduler-config -n kube-system 
+
+MONITOR CLUSTER COMPONENTS:
+METRICS SERVER 
+#install metric-server on minikube
+minikube addons enable metrics-server
+#install metric-server
+git clone https://github.com/kubernetes-incubator/metric-server.github
+kubectl create -f deploy/1.8+/
+#see metrics
+kubectl top node
+kubectl top pods 
