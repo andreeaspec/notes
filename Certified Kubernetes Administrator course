@@ -50,6 +50,9 @@ kubectl create -f pod-definition.yml
 kubectl create -f pod-definition.yml --namespace=dev # create a pod in a different namespace than default
 kubectl get pods
 kubectl get pods --namespace=dev 
+controlplane ~ ➜  kubectl get pods -o wide
+NAME    READY   STATUS    RESTARTS   AGE   IP           NODE     NOMINATED NODE   READINESS GATES
+nginx   1/1     Running   0          13s   172.17.1.2   node01   <none>           <none>
 kubectl describe pod myapp-pod
 
 Example - Create a new pod with the name redis and the image redis123.
@@ -204,3 +207,10 @@ kubectl create service nodeport nginx --tcp=80:80 --node-port=30080 --dry-run=cl
 controlplane ~ ➜  kubectl run httpd --image=httpd:alpine --port=80 --expose
 service/httpd created
 pod/httpd created
+
+SCHEDULING:
+Manual scheduling - manually assign PODs to Nodes 
+- set nodeName in pod.yaml at POD creation 
+- bind the POD that is alleardy created using a pod-bind-def.yaml(needs to be transform in json format) - set name in target field and bind it
+curl --header "Content-Type:application/json" --request POST --data '{"apiVersion":"v1", "kind":"Binding"...} http://$SERVER/api/v1/namespace/default/pods/$PODNAME/binding/
+
