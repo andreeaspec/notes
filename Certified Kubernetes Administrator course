@@ -50,6 +50,12 @@ kubectl create -f pod-definition.yml
 kubectl create -f pod-definition.yml --namespace=dev # create a pod in a different namespace than default
 kubectl get pods
 kubectl get pods --namespace=dev 
+#copy the yaml of POD webapp to a  my-new-pod.yaml 
+kubectl get pod webapp -o yaml > my-new-pod.yaml 
+
+#monitors the status of the pods
+kubectl get pods --watch 
+
 controlplane ~ ➜  kubectl get pods -o wide
 NAME    READY   STATUS    RESTARTS   AGE   IP           NODE     NOMINATED NODE   READINESS GATES
 nginx   1/1     Running   0          13s   172.17.1.2   node01   <none>           <none>
@@ -214,3 +220,53 @@ Manual scheduling - manually assign PODs to Nodes
 - bind the POD that is alleardy created using a pod-bind-def.yaml(needs to be transform in json format) - set name in target field and bind it
 curl --header "Content-Type:application/json" --request POST --data '{"apiVersion":"v1", "kind":"Binding"...} http://$SERVER/api/v1/namespace/default/pods/$PODNAME/binding/
 
+#force - deletes and recreates a pod/replicaset/etc after making changes in yaml
+kubectl replace --force -f ngnix.yaml 
+kubectl replace --force -f replicaset-definition-1.yaml 
+
+LABELS AND SELECTORS:
+Selector: specify selector in pod.yaml definition
+kubectl get pods --selector app=Ap1
+kubectl get all --selector env=prod
+#count pods that are in Ap1, prod and in finace 
+kubectl get pods --selector app=Ap1, env=prod, bu=finace wc -l 
+
+TAINTS AND TOLERANCE- says to Pods not to go to a certain Node but go to Node with certains tolerantions 
+Tolerance is added in pod.yaml def  using tolerations 
+kubectl taint nodes node-name key=value:taint-effect
+kubectl taint nodes node1 app=blue:NoSchedule
+kubectl describe node kubemaster | grep Taint 
+kubectl taint nodes node01 spray=mortein:NoSchedule
+
+# Untain using - at the end:
+kubectl taint nodes controlplane node-role.kubernetes.io/control-plane:NoSchedule-
+
+NODES SELECTORS - used for setting limitations on PODS to only run on specific Nodes 
+-field nodeSelector in pod.yaml - for PODs Medium and Large 
+kubectl label nodes <node-name> <label-key>=<label-value>
+kubectl label nodes node-1 size=Large
+
+NODE AFFINITY: ensures that PODs run on specific Nodes 
+-field affinity/NodeAffinity in pod.yaml 
+
+RESOURCE LIMITS:
+-field resources in pod.yaml
+-field limits in pod.yaml
+LimitRanges-object to limit request and limits- for cpu and memory - affects only PODs that will be created(not the existing ones)
+
+RESOURCE QUOTAS- at namespace level - 
+- a namespace object created to set part limits of resources 
+
+DAEMON SETS - assures that one copy of a POD is always present on the cluster- similar to replicaset 
+kind: DaemonSet
+kubectl create -f daemon-set-definition.yaml
+kubectl get daemonsets
+
+#get daemonsets in all namespaces
+kubectl get daemonsets.apps --all 
+
+STATIC PODS - are created by the Kubelet -control-plane
+/etc/kubernetes/manifests
+docker ps 
+#Create a static pod named static-busybox that uses the busybox image and the command sleep 1000
+kubectl run --restart=Never --image=busybox static-busybox --dry-run=client -o yaml --command -- sleep 1000 > /etc/kubernetes/manifests/static-busybox.yaml
