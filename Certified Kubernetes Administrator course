@@ -270,3 +270,7 @@ STATIC PODS - are created by the Kubelet -control-plane
 docker ps 
 #Create a static pod named static-busybox that uses the busybox image and the command sleep 1000
 kubectl run --restart=Never --image=busybox static-busybox --dry-run=client -o yaml --command -- sleep 1000 > /etc/kubernetes/manifests/static-busybox.yaml
+
+#Multiple SCHEDULERS
+kubectl create configmap my-scheduler-config --from-file=/root/my-scheduler-config.yaml -n kube-system 
+kubectl get configmap my-scheduler-config -n kube-system 
