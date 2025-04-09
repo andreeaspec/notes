@@ -66,6 +66,9 @@ controlplane ~ ➜  kubectl run redis --image=redis123 --dry-run=client -o yaml 
 controlplane ~ ➜  kubectl create -f redis-definition.yaml
 pod/redis created
 
+# Create a pod named webapp-green, image set to kodecloud/webapp-color and command line arguments --color=green 
+kubectl run webapp-green --image=kodecloud/webapp-color -- --color green 
+
 ReplicationController:
 kubectl create -f rc-definition.yml
 kubectl get replicationController
@@ -289,3 +292,27 @@ kubectl top pods
 LOGS:
 kubectl logs -f pod_name 
 kubectl logs -f pod_name container_name
+
+ROLLING UPDATES AND ROLLBACKS 
+#check the rollout status 
+kubectl rollout status deployment/myapp-deployment 
+#check the history of the rollout versions 
+kubectl rollout history deployment/myapp-deployment 
+
+DEPLOYMENT STRATEGY:
+RECREATE - destroy the pods and recreate- the app will have a down time
+ROLLING UPDATE - destroy and recreate one by one  - the default deployment strategy 
+-The strategy type can be seen in kubectl describe deployment my-deploy under StrategyType field
+Rollback:
+kubectl  rollout undo deployment/myapp-deployment 
+kubectl get replicaset 
+CMDS:
+CREATE - kubectl create -f deployment-deployment-definition.yml
+CREATE&RECORD - kubectl create -f deployment-deployment-definition.yml --record
+-> se vede in Annotations
+GET    - kubectl get deployment
+UPDATE - kubectl apply -f deployment-definition.yml
+       - kubectl set image deployment/myapp-deployment \nginx-container=nginx:1.9.1
+STATUS - kubectl rollout status deployment/myapp-deployment
+       - kubectl rollout history deployment/myapp-deployment
+ROLLBACK kubectl rollout undo deployment myapp-deployment
