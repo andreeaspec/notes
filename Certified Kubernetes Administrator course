@@ -316,3 +316,38 @@ UPDATE - kubectl apply -f deployment-definition.yml
 STATUS - kubectl rollout status deployment/myapp-deployment
        - kubectl rollout history deployment/myapp-deployment
 ROLLBACK kubectl rollout undo deployment myapp-deployment
+
+CONFIGMAPS:
+-imperative: kubectl create configmap
+
+kubectl create configmap <config-name> --from-literal=<key>=<value>
+exe: kubectl create configmap app-config --from-literal=APP_COLOR=blue
+
+-declarative: kubectl create -f config-map.yaml 
+config-map.yaml 
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  APP_COLOR: blue
+  APP_MODE: prod
+
+kubectl get configmaps
+kubectl describe configmaps
+
+SECRETES: used to store sensible dataas as password 
+- create secret and inject it into POD 
+- imperative: 
+kubectl create secret generic <secret-name> --from-literal=<key>=<value>
+exe: kubectl create secret generic  app-secret --from-literal=DB_Host=mysql --from-literal=DB_User=root --from-literal=DB_Password=password
+kubectl create secret generic  <secret-name> --from-file=<path-to-file>
+exe: kubectl create secret generic  app-secret --from-file=app_secret.properties
+In Pod.yaml definition add the below fileds to map the pod to the secret called db-secret 
+    envFrom:
+    - secretRef:
+        name: db-secret 
+kubectl get secrets 
+kubectl get secret app-secret -o yaml
+
+- declarative: kubectl create -f  secret.yaml
