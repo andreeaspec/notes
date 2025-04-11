@@ -351,3 +351,5 @@ kubectl get secrets
 kubectl get secret app-secret -o yaml
 
 - declarative: kubectl create -f  secret.yaml
+
+
