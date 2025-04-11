@@ -353,3 +353,58 @@ kubectl get secret app-secret -o yaml
 - declarative: kubectl create -f  secret.yaml
 
 
+RBAC-Role Based Access Controls- namespaces
+
+Create yaml role - developer-role.yaml
+kubectl create -f developer-role.yaml
+Create yaml devuser-biding role - devuser-biding.yaml
+kubectl create -f  devuser-biding.yaml
+kubectl get roles
+kubectl get rolebidings
+kubectl describe role developer 
+kubectl describe rolebinding devuser-biding
+
+Check access
+kubectl auth can-i create deplyments
+kubectl auth can-i delete nodes 
+Check access as another user 
+kubectl auth can-i create deplyments --as dev-user
+kubectl auth can-i delete nodes --as dev-user
+
+Create the necessary roles and role bindings required for the dev-user to create, list and delete pods in the default namespace.
+
+To create a Role:
+kubectl create role developer --namespace=default --verb=list,create,delete --resource=pods
+
+To create a RoleBinding:
+kubectl create rolebinding dev-user-binding --namespace=default --role=developer --user=dev-user
+
+CLUSTER ROLS: for cluster scope 
+controlplane ~ ➜  cat cluster.yaml 
+
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: node-admin
+rules:
+- apiGroups: [""]
+  resources: ["nodes"]
+  verbs: ["get", "watch", "list", "create", "delete"]
+
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: michelle-binding
+subjects:
+- kind: User
+  name: michelle
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: node-admin
+  apiGroup: rbac.authorization.k8s.io
+  
+kubectl get clusterroles 
+
+
